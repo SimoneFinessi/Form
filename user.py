@@ -3,15 +3,17 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def tour():
-  return render_template("home1.html")
+  return render_template("controllo.html")
 
 @app.route('/login', methods=['GET'])
 def login():
   nome=request.args.get("nm")
-  cognome=request.args.get("cm")
-
-  
-  return render_template("login.html",testo=nome, testo1=cognome)
+  pas=request.args.get("pas")
+  if nome.lower()=="admin" and pas=="xxx123#":
+    return render_template("login.html",testo=nome, testo1=pas)
+  else:
+    return render_template("sbagliato.html")
+ 
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
