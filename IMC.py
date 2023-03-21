@@ -5,7 +5,7 @@ app = Flask(__name__)
 def IMC():
     alt=int(request.form["al"])/100
     peso=float(request.form["kg"])
-    return peso/(alt*2)
+    return peso/(alt**2)
 
 
 @app.route('/', methods=['GET'])
