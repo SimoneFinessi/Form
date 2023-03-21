@@ -8,13 +8,13 @@ app = Flask(__name__)
 
 def tranf(a,b):
   if b=="F":
-    ciao=""
+    ciao=(a *(9/5))+32 
   elif b=="cent":
-    ciao=""
+    ciao=(a-32)*5/9
   elif b=="K":
-    ciao=""
+    ciao=
   elif b=="C":
-
+    ciao=""
 @app.route('/', methods=['GET'])
 def tour():
   return render_template("conv/html1.html")
@@ -24,7 +24,7 @@ def login():
   gradi= request.form["GR"]
   cosa= request.form["fav_language"]
   risultato=tranf(gradi,cosa)
-  return render_template("sbagliato.html")
+  return render_template("conv/login.html")
 
  
 
