@@ -2,6 +2,11 @@
 
 from flask import Flask,render_template,request
 app = Flask(__name__)
+def IMC():
+    alt=int(request.form["al"])/100
+    peso=float(request.form["kg"])
+    return peso/(alt*2)
+
 
 @app.route('/', methods=['GET'])
 def tour():
@@ -9,18 +14,18 @@ def tour():
 
 @app.route('/login', methods=['POST'])
 def login():
-    alt=float(request.form["al"])
-    peso=float(request.form["kg"])
-    imc=peso/(alt*2)
+    imc=IMC()
     come=""
     if imc>25:
         come="sovrappeso"
+        immage="../../static/img/sovra.jpg"
     elif imc<24.9 and imc>18.5 :
         come="normopeso"
+        immage="../../static/img/normo.jpg"
     elif imc<18.5:
         come="sottopeso"
-
-    return render_template("es2/login.html",IMC=imc,testo=come)
+        immage="../../static/img/sotto.jpg" 
+    return render_template("es2/login.html",IMC=imc,testo=come,immagine=immage)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
